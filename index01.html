@@ -1,0 +1,200 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>ΚΟΔΣ</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Open Sans";
+            color:white;
+            background-color: #000000 !important;
+            height: 100vh;
+/*
+            margin: 0;
+            padding: 0;
+*/
+        }
+        .container-fluid {
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+        }
+    
+        .landing {
+            background: url(img/moutain.jpg);
+            background-size: cover;
+            height: 100VH !important;
+            background-repeat: no-repeat;
+           
+        }
+        .loginSec {
+            position: absolute;
+            top: 40vh;
+            margin-right:0%;
+            left:0%;
+            opacity: .8;
+            
+            
+        }
+        input {
+            position: relative;
+            color: white;
+            background-color: transparent;
+            border-top: transparent;
+            border-right: transparent;
+            border-left: transparent;
+            display: block;
+            margin-bottom: 5px !important;
+            left: 11%;
+            top: 7vh;
+            
+
+        }
+     
+        .btn-outline {
+            position: relative;
+            left: 70px;
+            background-color: transparent;
+            border: 2px solid #ffffff;
+            bor:der-radius: 2px;
+            color: white;
+        }
+        button {
+            position: absolute;
+            left: 15% !important;
+            top: 7vh;
+            margin-top: 10px !important;
+            cursor: pointer;
+         
+            
+        }
+        .code {
+            font-family: Oswald;
+            color:#FFF;
+            font-size: 300px;
+            position: absolute;
+            left: 0%;
+            top: -40vh;
+            opacity: .15;
+        }
+        .btn-outline:hover {
+            background-color: #53004B;
+            opacity: ;
+        }
+        #invite {
+            z-index: 3;
+            
+
+        }
+        img {
+            background-color: black;
+            position: fixed;
+            top: 40%;
+            left: 50%;
+/*             bring your own prefixes */
+            transform: translate(-50%, -50%);
+        }
+        .alert-danger{
+            opacity: 0;
+        } 
+        .alert-success{
+            opacity: 0;
+            z-index: 4;
+        }
+        @media (max-width: 400px) {
+            min-height: calc(100%);
+        }
+        
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+
+    <div class="container-fluid landing">
+
+        <div class="alert alert-danger" style="position: absolute; top:10px; width:100%" role=alert>
+            <strong>Either our guest list if full OR you entered the wrong password. Please try again</strong>
+        </div>
+           <div class="alert alert-success" style="position: absolute; top:10px; width:100%" role=alert>
+            <strong>You have been aded to the guest list!</strong>
+        </div>
+
+
+        <img id="invite" src="" alt="">
+        <row id="creds">
+            <div class="col-sm loginSec">
+                <h1 class="code text-center">ΚΟΔΣ</h1>
+                <input type="text" placeholder="FULLNAME" id="FULLNAME">
+                <input type="text" placeholder="INVITED BY" id="INVITEDBY" style="margin-bottom: 20px !important">
+                <input type="text" placeholder="USERNAME" id="USERNAME">
+                <input type="password" placeholder="PASSWORD" id="PASSWORD">
+                <button class="btn-outline" id="myBtn" onclick="authenticate()">Login</button>
+            </div>
+        </row>
+
+
+
+        <script>
+            var input = document.getElementById("PASSWORD");
+            input.addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                    authenticate();
+                }
+            });
+            var inputU = document.getElementById("USERNAME");
+            inputU.addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                    authenticate();
+                }
+            });
+
+            function authenticate() {
+                let user = document.getElementById('USERNAME').value
+                let pass = document.getElementById('PASSWORD').value
+                var username = "code"
+                var password = "honorthecode"
+                if (user == username && (pass == password)) {
+                    console.log('f1')
+                    $('.landing').css('background-image', 'url( )');
+                    $('#creds').remove();
+                    $('#invite').attr('src', 'img/halloinvite.gif');
+                    $('.alert-danger').css('opacity', '0');
+                    $('.alert-success').css('opacity', '1');
+
+
+                } else {
+                    user = document.getElementById('USERNAME').value = ''
+                    pass = document.getElementById('PASSWORD').value = ''
+                    $('.alert-danger').css('opacity', '1');
+                }
+                if (user == username && (pass == password))
+                {
+                    $('body').append(`<iframe src="sound.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+                        </iframe>`);
+
+                    $('body').append(`<audio controls autoplay loop id="playAudio" style="opacity:0">
+                        <source src="sound.mp3">
+                        </audio>`);
+            }
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+       
+</body>
+
+</html>
